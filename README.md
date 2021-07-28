@@ -1,6 +1,6 @@
 # qclient
 
-Client for running quantum applications on qserver instances
+Client for running quantum applications on qserver instances. See https://quantum.tecnalia.com.
 
 ## Install
 
