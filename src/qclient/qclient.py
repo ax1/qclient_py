@@ -39,9 +39,19 @@ def get(name: str) -> str:
     return request.urlopen(req).read().decode('utf-8')
 
 
-def execute(name: str) -> str:
-    '''Execute an algorithm'''
-    realName = name if '.' in name else name + EXT
-    req = request.Request(ENDPOINT_SERVICES+'/run/' +
-                          realName, data=''.encode('utf-8'))
-    return request.urlopen(req).read().decode('utf-8')
+def execute(name_or_data: str) -> str:
+    '''
+    Execute an algorithm
+
+    If name -> Execute an existing algorithm from database
+    If data -> Execute the algorithm described in data
+    '''
+    if len(name_or_data) < 20:
+        realName = name_or_data if '.' in name_or_data else name_or_data + EXT
+        data = ''.encode('utf-8')
+        req = request.Request(ENDPOINT_SERVICES+'/run/' + realName, data)
+        return request.urlopen(req).read().decode('utf-8')
+    else:
+        data = name_or_data.encode('utf-8')
+        req = request.Request(ENDPOINT_SERVICES+'/run', data)
+        return request.urlopen(req).read().decode('utf-8')
