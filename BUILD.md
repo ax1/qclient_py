@@ -15,6 +15,7 @@ Create the ~/.pypirc file and add the following:
 Then execute the commands:
 
 ```
+[change the version in setuo file]
 cd ./qclient (parent folder to src/ and dist/)
 [... other commands if first time]
 python3 -m build
